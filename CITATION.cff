@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper and the software as below."
+title: "RAM-bounds: bounds on the thickness and magnetic mass of magneto-dielectric radar absorbers"
+authors:
+  - family-names: Acher
+    given-names: Olivier
+version: 0.1.0
+date-released: 2026-11-16
+license: MIT
+repository-code: "https://github.com/acherjobin-retraite/RAM-bounds"
