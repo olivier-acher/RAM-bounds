@@ -3,9 +3,9 @@
 For a crossover frequency Fc, the crossover window is min(1, Fc^2/f^2): it counts
 in frequency below Fc and in wavelength above Fc.
 
-- absorption area      A(Fc)  = int Gamma(f) min(1, Fc^2/f^2) df          (Eq. 17)
+- absorption area      A(Fc)  = int Gamma(f) min(1, Fc^2/f^2) df          (Eq. 15)
 - saturation factor    xi(Fc), computed from Gamma(f) alone               (Eq. B14)
-- crossover inductance Lambda[Z](Fc) = (c/pi^2) int Re Z(f) min(1, Fc^2/f^2) df   (Eqs. 20, 45),
+- crossover inductance Lambda[Z](Fc) = (c/pi^2) int Re Z(f) min(1, Fc^2/f^2) df   (Eqs. 17, 42),
   computed here as an average of Re Z over a half-circle of complex frequencies (Eq. B4).
 
 Attenuations Gamma are in nepers in this module.
@@ -30,7 +30,7 @@ def trapezoid_weights(f):
 
 
 def absorption_area(f, w, gamma, Fc):
-    """Absorption area A(Fc), in Np.GHz (Eq. 17). Fc may be a scalar or an array."""
+    """Absorption area A(Fc), in Np.GHz (Eq. 15). Fc may be a scalar or an array."""
     Fc = np.atleast_1d(np.asarray(Fc, dtype=float))
     win = np.minimum(1.0, (Fc[:, None] / f[None, :]) ** 2)
     A = win @ (gamma * w)
@@ -38,7 +38,7 @@ def absorption_area(f, w, gamma, Fc):
 
 
 def effective_attenuation(gamma):
-    """Effective attenuation Gamma_e = 2 tanh(Gamma/2) (Eq. 23)."""
+    """Effective attenuation Gamma_e = 2 tanh(Gamma/2) (Eq. 21)."""
     return 2.0 * np.tanh(np.asarray(gamma, dtype=float) / 2.0)
 
 
@@ -96,7 +96,7 @@ def beta_steps(s, edges, levels):
 
 
 def crossover_inductance_ideal(Fc, edges, levels):
-    """Crossover inductance of the ideal absorber W of a template (Eq. 37 for a flat template):
+    """Crossover inductance of the ideal absorber W of a template (Eq. 36 for a flat template):
     its reflection coefficient has the modulus of the template within the band, 1 outside,
     and minimum phase, so that W = tanh(beta). Fc may be a scalar or an array."""
     Fc = np.atleast_1d(np.asarray(Fc, dtype=float))

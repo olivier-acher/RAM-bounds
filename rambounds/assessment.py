@@ -5,11 +5,11 @@ its phase; the thickness D of the absorber; its magnetic mass M (or its amount o
 material J_mu) and its magnetic material.
 
 Output:
-- the Rozanov thickness D_R and the thin magnetic absorber mass M_A of the curve itself (Eq. 53),
+- the Rozanov thickness D_R and the thin magnetic absorber mass M_A of the curve itself (Eq. 50),
   and the position (x, m) = (D/D_R, M/M_A) of the absorber in the reduced plane;
-- its efficiency eta (Eq. 54), and the same with the saturation factor;
+- its efficiency eta (Eq. 51), and the same with the saturation factor;
 - the minimum magnetic mass that any absorber of thickness D needs to produce this curve,
-  with the simplified form (22), the local form (23) and the general form (18).
+  with the simplified form (20), the local form (21) and the general form (18).
 
 Only the attenuation within the chosen band is credited (0 elsewhere), which keeps every
 bound valid (Sec. 3.5).
@@ -55,7 +55,7 @@ class Assessment:
             "Absorber: D = %.4g mm, M = %.4g kg/m2 of %s (J_mu = %.4g mm.GHz2)" % (self.D, self.M, mat.name, self.J_mu),
             "Own reflection curve: D_R = %.4g mm, M_A = %.4g kg/m2 (J_A = %.4g mm.GHz2)" % (self.D_R, self.M_A, self.J_A),
             "Reduced position: x = D/D_R = %.3g, m = M/M_A = %.3g" % (self.x, self.m),
-            "Efficiency eta (Eq. 54) = %.3g, reached at Fc = %.3g GHz; with the saturation factor: %.3g" % (self.eta, self.Fc_eta, self.eta_xi),
+            "Efficiency eta (Eq. 51) = %.3g, reached at Fc = %.3g GHz; with the saturation factor: %.3g" % (self.eta, self.Fc_eta, self.eta_xi),
             "Minimum magnetic mass at this thickness: %.4g kg/m2 (simplified form 22), %.4g kg/m2 (local form 23), "
             "%.4g kg/m2 (general form 18, rigorous), split frequency %.3g GHz" % (self.M_min_simplified, self.M_min_local, self.M_min_rigorous, self.Fs),
             "Ratio M / M_min (rigorous) = %s" % ("%.3g" % (self.M / self.M_min_rigorous) if self.M_min_rigorous > 0 else "infinite: no magnetic material is required")])
@@ -108,7 +108,7 @@ def assess_curve(f, gamma_dB, D, M=None, material="carbonyl iron powder", J_mu=N
 
 def limit_curve(assessment, form="rigorous", n=200):
     """Reduced plane: lowest m = M/M_A as a function of x = D/D_R for the same reflection curve
-    (the solid curves of Fig. 9b of the paper). form = 'simplified' (22), 'local' (23) or 'rigorous' (18)."""
+    (the solid curves of Fig. 9b of the paper). form = 'simplified' (20), 'local' (21) or 'rigorous' (18)."""
     L = assessment.curves[{"simplified": "L22", "local": "L23", "rigorous": "L18"}[form]]
     x = np.linspace(0, 1.0, n)
     J, _ = envelope(L, assessment.curves["Fc"], x * assessment.D_R)

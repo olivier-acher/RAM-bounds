@@ -1,4 +1,4 @@
-"""Magnetic materials: the constants I_mu and K_mu of the paper (Eqs. 9-12, Table I).
+"""Magnetic materials: the constants I_mu and K_mu of the paper (Eqs. 9-13, Table I).
 
 I_mu = k_A * (gamma_bar * 4 pi Ms)^2   (GHz^2), the generalized Snoek bound of the material,
 K_mu = I_mu / rho                       (mm.GHz^2 per kg/m^2), its efficiency per unit mass.
@@ -34,17 +34,17 @@ class Material:
 
     @property
     def K_mu(self):
-        """Mass efficiency, mm.GHz^2 per kg/m^2 (Eq. 12)."""
+        """Mass efficiency, mm.GHz^2 per kg/m^2 (Eq. 13)."""
         return self.I_mu / self.rho
 
     @property
     def I_mu_dB(self):
-        """I_mu in dB.GHz/mm (Eq. 26, Table I)."""
+        """I_mu in dB.GHz/mm (Eq. 24, Table I)."""
         return self.I_mu * K_DB / C
 
     @property
     def K_mu_dB(self):
-        """K_mu in dB.GHz per kg/m^2 (Eq. 26, Table I)."""
+        """K_mu in dB.GHz per kg/m^2 (Eq. 24, Table I)."""
         return self.K_mu * K_DB / C
 
     def amount(self, M):

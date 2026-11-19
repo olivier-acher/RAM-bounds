@@ -41,8 +41,8 @@ def plot_attenuation(f, gamma_dB, ax=None, spec=None, label=None, logf=True, col
 
 
 def plot_specification(spec, material=None, ax=None, n=300, mark=()):
-    """Plane (thickness, magnetic mass) for a Specification: approximate law (35), exact
-    frontier (38), balanced point. In reduced units (x = D/D_R, m = M/M_A) if no material is
+    """Plane (thickness, magnetic mass) for a Specification: approximate law (32), exact
+    frontier (37), balanced point. In reduced units (x = D/D_R, m = M/M_A) if no material is
     given, in mm and kg/m^2 otherwise. `mark` = list of (D, M, label) points to add."""
     if ax is None:
         _, ax = plt.subplots(figsize=(4.6, 4))
@@ -55,8 +55,8 @@ def plot_specification(spec, material=None, ax=None, n=300, mark=()):
         mat = get_material(material)
         sx, sy, xl, yl = 1.0, 1 / mat.K_mu, "thickness $D$ (mm)", "magnetic mass $M$ (kg/m$^2$) of %s" % mat.name
     ax.fill_between(D * sx, 0, Jex * sy, color=GRAY, alpha=0.25, lw=0)
-    ax.plot(D * sx, Jlaw * sy, "--", color=GRAY, lw=1.3, label="approximate law (35)")
-    ax.plot(D * sx, Jex * sy, "-", color=INK, lw=1.5, label="exact frontier (38)")
+    ax.plot(D * sx, Jlaw * sy, "--", color=GRAY, lw=1.3, label="approximate law (32)")
+    ax.plot(D * sx, Jex * sy, "-", color=INK, lw=1.5, label="exact frontier (37)")
     if spec.flat:
         Db, Jb = spec.balanced_point()
         ax.plot([Db * sx], [Jb * sy], "o", color="white", mec=INK, mew=1.2, ms=6, label="balanced point (law 35)")
@@ -81,7 +81,7 @@ def plot_assessment(assessment, ax=None, label="absorber"):
     x, m22 = limit_curve(assessment, "simplified")
     _, m18 = limit_curve(assessment, "rigorous")
     ax.fill_between(x, 0, m18, color=GRAY, alpha=0.25, lw=0)
-    ax.plot(x, m22, "--", color=GRAY, lw=1.3, label="limit, simplified form (22)")
+    ax.plot(x, m22, "--", color=GRAY, lw=1.3, label="limit, simplified form (20)")
     ax.plot(x, m18, "-", color=INK, lw=1.5, label="limit, general form (18)")
     ax.plot([assessment.x], [assessment.m], "*", color="#b4541f", ms=12, label=label)
     ax.set_xlim(0, max(1.05, 1.1 * assessment.x))

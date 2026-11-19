@@ -2,14 +2,16 @@
 
 Companion code of the paper
 
-> O. Acher, *Mass and thickness of magneto-dielectric radar absorbers: fundamental constraints and practical guidelines* (submitted to Physical Review Applied). [reference and DOI to be added]
+> O. Acher, *Mass and thickness of magneto-dielectric radar absorbers: fundamental constraints and practical guidelines*, preprint (2026), Zenodo, [doi:10.5281/zenodo.24345127](https://doi.org/10.5281/zenodo.24345127). Submitted to Physical Review Applied.
+
+Equation, figure and section numbers below refer to this preprint.
 
 The paper establishes a bound on the performance of any planar, passive, linear magneto-dielectric absorber on a metal plane at normal incidence: the absorption area of its reflection curve cannot exceed what its thickness and its amount of magnetic material can pay for. This code applies the bound in two ways.
 
 | Use | You give | You get |
 |---|---|---|
-| **Specification → frontier** (Sec. 2.3) | a minimum attenuation over a band, e.g. −10 dB over 2–18 GHz, and a magnetic material | the Rozanov thickness `D_R`, the thin magnetic absorber mass `M_A`, the approximate law (35), the exact frontier (38): minimum magnetic mass at every thickness, the balanced point |
-| **Reflection curve → assessment** (Secs. 3.1, 3.5) | an attenuation curve Γ_dB(f) (measured, computed or read on a data sheet, no phase needed), the thickness `D`, the magnetic mass `M` and the magnetic material | the position of the absorber in the reduced plane, its efficiency η (Eq. 54), the minimum magnetic mass allowed at its thickness by the simplified (22), local (23) and general (18) forms of the bound |
+| **Specification → frontier** (Sec. 2.3) | a minimum attenuation over a band, e.g. −10 dB over 2–18 GHz, and a magnetic material | the Rozanov thickness `D_R`, the thin magnetic absorber mass `M_A`, the approximate law (32), the exact frontier (37): minimum magnetic mass at every thickness, the balanced point |
+| **Reflection curve → assessment** (Secs. 3.1, 3.5) | an attenuation curve Γ_dB(f) (measured, computed or read on a data sheet, no phase needed), the thickness `D`, the magnetic mass `M` and the magnetic material | the position of the absorber in the reduced plane, its efficiency η (Eq. 51), the minimum magnetic mass allowed at its thickness by the simplified (20), local (21) and general (18) forms of the bound |
 
 ## Installation
 
@@ -86,8 +88,8 @@ Any other material: `Material("my ferrite", k_A=1/3, Ms_kG=4.5, rho=5.1)`. The g
 - **D_R** (Rozanov thickness): thickness of the thinnest dielectric absorber with this reflection curve.
 - **M_A** (thin magnetic absorber mass): magnetic mass of the lightest magnetic absorber of negligible thickness with this reflection curve.
 - **x = D/D_R, m = M/M_A**: reduced coordinates; the absorber must lie above the frontier.
-- **η** (efficiency, Eq. 54): the largest fraction of the budget of the bound that the absorber uses; 1 on the frontier.
-- **Forms of the bound** for a curve without phase: simplified (22), for quick estimates; local (23), with the effective attenuation 2 tanh(Γ/2), rigorous and simple; general (18), with the saturation factor ξ computed from Γ(f) alone, rigorous and the best of the three.
+- **η** (efficiency, Eq. 51): the largest fraction of the budget of the bound that the absorber uses; 1 on the frontier.
+- **Forms of the bound** for a curve without phase: simplified (20), for quick estimates; local (21), with the effective attenuation 2 tanh(Γ/2), rigorous and simple; general (18), with the saturation factor ξ computed from Γ(f) alone, rigorous and the best of the three.
 - **F_s** (split frequency): below F_s the absorption is paid with magnetic material, above F_s with thickness.
 
 ## Scope and limitations
@@ -96,7 +98,7 @@ The bound holds for passive, linear, time-invariant planar absorbers on a metal 
 
 ## How to cite
 
-Please cite the paper above and this code: [Zenodo DOI to be added].
+Please cite the paper above and this code. The code is archived on Zenodo at each release, with its own DOI.
 
 ## License
 

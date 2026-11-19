@@ -1,10 +1,30 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite the paper and the software as below."
 title: "RAM-bounds: bounds on the thickness and magnetic mass of magneto-dielectric radar absorbers"
+type: software
 authors:
   - family-names: Acher
     given-names: Olivier
+    affiliation: "Independent Researcher"
+    orcid: "https://orcid.org/0000-0001-9001-4104"
 version: 0.1.0
-date-released: 2026-11-16
+date-released: 2026-11-19
 license: MIT
 repository-code: "https://github.com/olivier-acher/RAM-bounds"
+keywords:
+  - radar absorbing materials
+  - magneto-dielectric absorbers
+  - Rozanov bound
+  - sum rules
+  - microwave magnetism
+references:
+  - type: article
+    authors:
+      - family-names: Acher
+        given-names: Olivier
+        affiliation: "Independent Researcher"
+        orcid: "https://orcid.org/0000-0001-9001-4104"
+    title: "Mass and thickness of magneto-dielectric radar absorbers: fundamental constraints and practical guidelines"
+    year: 2026
+    doi: 10.5281/zenodo.24345127
+    notes: "Preprint on Zenodo; submitted to Physical Review Applied."

@@ -4,12 +4,12 @@ A specification is a minimum attenuation, in dB, over a frequency band. The simp
 flat: Gamma_dB >= level over [F1, F2]. Templates made of several flat steps are also accepted.
 
 For a specification, the module gives:
-- the Rozanov thickness D_R (thinnest dielectric absorber, Eq. 30) and the thin magnetic
-  absorber amount J_A and mass M_A (lightest magnetic absorber of negligible thickness, Eq. 31);
-- the approximate law (35), and the exact frontier (38): the minimum amount of magnetic
+- the Rozanov thickness D_R (thinnest dielectric absorber, Eq. 27) and the thin magnetic
+  absorber amount J_A and mass M_A (lightest magnetic absorber of negligible thickness, Eq. 28);
+- the approximate law (32), and the exact frontier (37): the minimum amount of magnetic
   material J_ex(D), or magnetic mass M_min(D), of any absorber of thickness D that meets
   the specification, with the split frequency F_s at this thickness;
-- the balanced point of the approximate law (Eq. 36).
+- the balanced point of the approximate law (Eq. 33).
 """
 import numpy as np
 
@@ -61,16 +61,16 @@ class Specification:
 
     @property
     def D_R(self):
-        """Rozanov thickness, mm (Eq. 30)."""
+        """Rozanov thickness, mm (Eq. 27)."""
         return C / (2 * np.pi**2) * np.sum(self.levels * (1 / self.edges[:-1] - 1 / self.edges[1:]))
 
     @property
     def J_A(self):
-        """Amount of magnetic material of the thin magnetic absorber, mm.GHz^2 (Eq. 31)."""
+        """Amount of magnetic material of the thin magnetic absorber, mm.GHz^2 (Eq. 28)."""
         return C / (2 * np.pi**2) * np.sum(self.levels * (self.edges[1:] - self.edges[:-1]))
 
     def M_A(self, material):
-        """Magnetic mass of the thin magnetic absorber, kg/m^2 (Eq. 31)."""
+        """Magnetic mass of the thin magnetic absorber, kg/m^2 (Eq. 28)."""
         return get_material(material).mass(self.J_A)
 
     # ---- crossover frequencies ----------------------------------------------------
@@ -91,7 +91,7 @@ class Specification:
                 A += g * ((lo - fa) + Fc**2 * (1 / lo - 1 / fb))
             L_lin = C / (2 * np.pi**2) * A
             # ideal absorber W; Z_in = 1 (no reflection) also meets any specification,
-            # so the frontier never lies above the hyperbola (55)
+            # so the frontier never lies above the hyperbola (53)
             L_W = np.minimum(crossover_inductance_ideal(Fc, self.edges, self.levels), 2 * C * Fc / np.pi**2)
             self._cache["lines"] = (Fc, L_lin, L_W)
         return self._cache["lines"]
@@ -99,7 +99,7 @@ class Specification:
     # ---- frontiers -------------------------------------------------------------------
     def approximate_law(self, D):
         """Approximate frontier: minimum J (mm.GHz^2) at thickness D (mm), neglecting the
-        saturation factor (Eqs. 33-35). For a flat specification it is the law (35),
+        saturation factor (Eqs. 30-32). For a flat specification it is the law (32),
         J = J_A (1 - x) / (1 + (r - 1) x), with x = D / D_R."""
         D = np.asarray(D, dtype=float)
         if self.flat:
@@ -110,7 +110,7 @@ class Specification:
         return envelope(L_lin, Fc, D)[0]
 
     def exact_frontier(self, D):
-        """Exact frontier (38): minimum amount of magnetic material J_ex(D) (mm.GHz^2) of an
+        """Exact frontier (37): minimum amount of magnetic material J_ex(D) (mm.GHz^2) of an
         absorber of thickness D (mm) that meets the specification, and the split frequency
         F_s (GHz) at this thickness. Returns (J_ex, F_s)."""
         Fc, _, L_W = self._lines()
@@ -121,7 +121,7 @@ class Specification:
         return get_material(material).mass(self.exact_frontier(D)[0])
 
     def balanced_point(self):
-        """Balanced point of the approximate law for a flat specification (Eq. 36):
+        """Balanced point of the approximate law for a flat specification (Eq. 33):
         x_b = m_b = 1 / (1 + sqrt(r)), reached for F_s = sqrt(F1 F2). Returns (D_b, J_b)."""
         if not self.flat:
             raise ValueError("the balanced point is defined here for flat specifications")
