@@ -1,5 +1,7 @@
 # RAM-bounds
 
+[![DOI](https://zenodo.org/badge/1460278576.svg)](https://doi.org/10.5281/zenodo.24362950)
+
 Companion code of the paper
 
 > O. Acher, *Mass and thickness of magneto-dielectric radar absorbers: fundamental constraints and practical guidelines*, preprint (2026), Zenodo, [doi:10.5281/zenodo.24345127](https://doi.org/10.5281/zenodo.24345127). Submitted to Physical Review Applied.
@@ -98,7 +100,11 @@ The bound holds for passive, linear, time-invariant planar absorbers on a metal 
 
 ## How to cite
 
-Please cite the paper above and this code. The code is archived on Zenodo at each release, with its own DOI.
+Please cite the paper above and this code:
+
+> O. Acher, *RAM-bounds: bounds on the thickness and magnetic mass of magneto-dielectric radar absorbers* (software), Zenodo, [doi:10.5281/zenodo.24362950](https://doi.org/10.5281/zenodo.24362950).
+
+This DOI covers all versions of the code and always points to the latest one; each release also has its own DOI on Zenodo.
 
 ## License
 

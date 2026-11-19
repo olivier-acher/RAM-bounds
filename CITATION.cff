@@ -11,6 +11,14 @@ version: 0.1.0
 date-released: 2026-11-19
 license: MIT
 repository-code: "https://github.com/olivier-acher/RAM-bounds"
+doi: 10.5281/zenodo.24362950
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24362950
+    description: "Concept DOI, all versions"
+  - type: doi
+    value: 10.5281/zenodo.24362952
+    description: "Version 0.1.0"
 keywords:
   - radar absorbing materials
   - magneto-dielectric absorbers
